@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build Application') {
+            steps {
+                echo "VK Test Build"
+            }
+            post {
+                success {
+                    echo "Success build"
+                    
+                }
+            }
+        }
+ 
+        Stage('Create Tomcat Docker Image'){
+            steps {
+                sh "docker build . -t myappnginx"
+                sh "docker run -p 82:80 -d --name 'vkapp' myappnginx"
+            }
+        }
+ 
+    }
+}
