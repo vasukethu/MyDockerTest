@@ -1,6 +1,6 @@
 ---
 - hosts: dev
-  become: root
+  become: true
   tasks:
     - name: Install Python pip
       yum:
@@ -15,5 +15,5 @@
         name: myhtmlapp
         image: "ketuvasuops/myhtmlapp:{{DOCKER_TAG}}"
         state: started
-        published_ports: 
-            - 0.0.0.0:8083:8083
+        ports: 
+          - "8083:8083"
