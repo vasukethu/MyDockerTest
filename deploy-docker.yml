@@ -1,11 +1,12 @@
 ---
 - hosts: dev
-  become: true
+  become: True
   tasks:
     - name: Start the Container
       docker_container:
-        name: Myapp
+        name: myhtmlapp
         image: "ketuvasuops/myhtmlapp:{{DOCKER_TAG}}"
         state: started
-        published_port: 
-        - 0.0.0.0:8082:8082
+        published_ports: 
+          - 0.0.0.0:8082:8082
+---
