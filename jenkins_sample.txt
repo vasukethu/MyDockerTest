@@ -1,20 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Build Application') {
+        stage('Git Clone') {
             steps {
-                echo "VK Test Build"
+                git credentialsId: 'Git-Login', url: 'https://github.com/vasukethu/Dockerpush.git'
             }
-            post {
-                success {
-                    echo "Success build"
-                    
-                }
             }
-        }
  
         stage('Create Tomcat Docker Image') {
             steps {
+                sh "docker rm ${docker ps -q}"
                 sh "docker build . -t myappnginx"
                 sh "docker run -p 82:80 -d --name 'vkapp' myappnginx"
             }
