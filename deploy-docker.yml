@@ -11,4 +11,4 @@
           image: "ketuvasuops/myhtmlapp:{{DOCKER_TAG}}"
           state: started
           ports: 
-            - "8083:8083"
+            - "8083:80"
