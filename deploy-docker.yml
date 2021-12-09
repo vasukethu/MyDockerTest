@@ -1,0 +1,20 @@
+---
+- hosts: dev
+  become: True
+  tasks:
+    - name: Install python pipeline
+      apt:
+        name: python-pip
+        state: present
+
+    - name: Install docker-py python module
+      pip: 
+        name: docker-py
+        state: present
+    -name: start the container
+     docker_container: 
+       name: mytestapp
+       image: "ketuvasuops/myhtmlapp:${BUILD_NUMBER}:${DOCKER_TAG}"
+       state: started
+       Published_ports:
+         - "8081:80"
