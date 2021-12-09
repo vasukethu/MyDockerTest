@@ -14,7 +14,7 @@
     -name: start the container
      docker_container: 
        name: mytestapp
-       image: "ketuvasuops/myhtmlapp:${BUILD_NUMBER}:${DOCKER_TAG}"
+       image: "ketuvasuops/myhtmlapp/${BUILD_NUMBER}:${DOCKER_TAG}"
        state: started
        Published_ports:
          - "8081:80"
